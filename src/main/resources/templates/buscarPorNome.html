@@ -1,0 +1,47 @@
+
+<head th:replace="~{layout :: head}">
+</head>
+<body>
+<div th:replace="~{layout :: navbar}"></div>
+<h2>Buscar Produtos por Nome</h2>
+
+<form method="get" th:action="@{/buscarPorNome/}"}>
+
+  <label for="nome">Nome:</label>
+  <input type="text" id="nome" name="nome" required>
+  <button class="btn btn-dark" type="submit">Buscar</button>
+</form>
+<h3 th:if="${mensagem}"  th:text="${mensagem}"></h3>
+<div class="container mb-2">
+  <table class="table table-light" th:if="${produtos}">
+    <tr class="table-dark">
+
+      <th></th>
+      <th scope="col">ID</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Categoria</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Preço</th>
+      <th scope="col"></th>
+    </tr>
+
+    <tr th:each="produto : ${produtos}">
+      <th scope="row"></th>
+      <td><span th:text="${produto.id}"></span></td>
+      <td><span th:text="${produto.nome}"></span></td>
+      <td><span th:text="${produto.categoria}"></span></td>
+      <td><span th:text="${produto.descricao}"></span></td>
+      <td>R$<span th:text="${produto.preco}"></span></td>
+      <td class="buttons "><a th:href="@{form/{id}(id=${produto.id})}"
+                              th:method="get" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+        <a th:href="@{delete/{id}(id=${produto.id})}" th:method="delete"
+           class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
+    </tr>
+  </table>
+  <div class="col-sm-5" th:if="${produtos}">
+    <a href="/form"><button class="btn btn-dark">Adicionar Produto</button></a>
+    <a href="/home" class="btn btn-dark">Home</a>
+  </div>
+</div>
+</body>
+</html>

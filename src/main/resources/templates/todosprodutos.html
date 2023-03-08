@@ -1,0 +1,39 @@
+<head th:replace="~{layout :: head}">
+</head>
+
+<body>
+
+
+<div th:replace="~{layout :: navbar}"></div>
+
+<div class="container mb-2">
+  <h1>Todos os Produtos cadastrados</h1>
+  <a href="/form"><button class="btn btn-dark">Adicionar Produto</button></a>
+  <table class="table table-light">
+    <tr class="table-dark">
+      <th></th>
+      <th scope="col">ID</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Categoria</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Preço</th>
+      <th scope="col"></th>
+    </tr>
+
+    <tr th:each="produto : ${produtos}">
+      <th scope="row"></th>
+      <td><span th:text="${produto.id}"></span></td>
+      <td><span th:text="${produto.nome}"></span></td>
+      <td><span th:text="${produto.categoria}"></span></td>
+      <td><span th:text="${produto.descricao}"></span></td>
+      <td>R$<span th:text="${produto.preco}"></span></td>
+      <td class="buttons "><a th:href="@{form/{id}(id=${produto.id})}"
+                              th:method="get" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+        <a th:href="@{deletar/{id}(id=${produto.id})}" th:method="delete"
+           class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
+    </tr>
+  </table>
+</div>
+</body>
+
+</html>
