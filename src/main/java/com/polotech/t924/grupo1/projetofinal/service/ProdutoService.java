@@ -24,7 +24,7 @@ public class ProdutoService {
            .orElseThrow(() -> new IllegalArgumentException("Produto com Id: "+ produto.getId() +" não encontrado"));
      return produtoRepository.save(produto);
 }
-    public List<Produto> categoria(String categoria){
+    public List<Produto> buscarPorCategoria(String categoria){
     CategoriaProduto categoriaProduto = CategoriaProduto.valueOf(categoria.toUpperCase());
     List<Produto> produtos = produtoRepository.findByCategoria(categoriaProduto);
     return produtos;

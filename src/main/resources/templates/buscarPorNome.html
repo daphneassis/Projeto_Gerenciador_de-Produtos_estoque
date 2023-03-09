@@ -5,7 +5,7 @@
 <div th:replace="~{layout :: navbar}"></div>
 <h2>Buscar Produtos por Nome</h2>
 
-<form method="get" th:action="@{/buscarPorNome/}"}>
+<form method="get" action="/buscarPorNome">
 
   <label for="nome">Nome:</label>
   <input type="text" id="nome" name="nome" required>
